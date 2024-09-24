@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import layoutStyles from "../styles/layout.module.css";
 import PolicyDetail from './policyDetail';

@@ -1,9 +1,49 @@
 import layoutStyles from "../styles/layout.module.css";
 import Image from "next/image";
+import React, { useState } from 'react';
+import Modal from 'react-modal';
+import { Policy } from "../models/policy";
+
+Modal.setAppElement('#root');
 
 export default function InfoBox(
     {title, description, imageSrc, buttonText}: {title: string, description: string, imageSrc: any, buttonText: string}) {
     
+const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [titleContent, setTitleContent] = useState('');
+  const [editorContent, setEditorContent] = useState('');
+
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    const newPolicy : Policy= {
+        title: titleContent,
+        content: editorContent,
+    };
+
+    const storedPolicies: Policy[] = JSON.parse(localStorage.getItem('policies') ?? '[]');
+    storedPolicies.push(newPolicy);
+    localStorage.setItem('policies', JSON.stringify(storedPolicies));
+
+    setEditorContent('');
+    setTitleContent('');
+  };
+
+  const cancelModal = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleTextChange = (e: any) => {
+    setEditorContent(e.target.value);
+  };
+
+  const handleTitleChange = (e: any) => {
+    setTitleContent(e.target.value);
+  };
+
     return (
       <div className={layoutStyles.infoBox}>
         <Image
@@ -17,9 +57,39 @@ export default function InfoBox(
           <p className={layoutStyles.infoBoxDescription}>{description}</p>
         </div>
   
-        <button className={layoutStyles.actionButton}>
+        <button onClick={openModal} className={layoutStyles.actionButton}>
           {buttonText}
         </button>
+
+        <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={layoutStyles}
+        contentLabel="Text Editor Modal"
+      >
+        <h2>New policy</h2>
+
+        <input
+            value={titleContent}
+            onChange={handleTitleChange}
+
+        />
+
+        <textarea
+          value={editorContent}
+          onChange={handleTextChange}
+          className={layoutStyles.textArea}
+          placeholder="Type your text here..."
+        />
+
+        <button onClick={closeModal} className={layoutStyles.actionButton}>
+          Save
+        </button>
+        <button onClick={cancelModal} className={layoutStyles.secondaryButton}>
+          Cancel
+        </button>
+      </Modal>
       </div>
     );
-};
+};    
+    
