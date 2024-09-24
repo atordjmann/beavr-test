@@ -1,0 +1,10 @@
+:root {
+  --background: #D3D3D3;
+}
+
+body {
+  background: var(--background);
+  font-family: 'Manrop', Arial, Helvetica, sans-serif;
+  margin: 0px;
+}
+

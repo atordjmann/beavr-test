@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    height:60px;
+    padding: 10px 20px;
+}
+
+.image {
+    width:75px;
+    height: 24px
+}
+
+.title {
+    flex: 1;
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    height: 24px;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    height: 28px;
+    width: 74px;
+}
