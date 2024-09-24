@@ -7,12 +7,12 @@ import { Policy } from "../models/policy";
 Modal.setAppElement('#root');
 
 export default function InfoBox(
-    {title, description, imageSrc, buttonText}: {title: string, description: string, imageSrc: any, buttonText: string}) {
+    {title, description, imageSrc, buttonText, createPolicy}: {title: string, description: string, imageSrc: any, buttonText: string, createPolicy: any}) {
     
 const [modalIsOpen, setModalIsOpen] = useState(false);
+
   const [titleContent, setTitleContent] = useState('');
   const [editorContent, setEditorContent] = useState('');
-
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -22,11 +22,11 @@ const [modalIsOpen, setModalIsOpen] = useState(false);
     const newPolicy : Policy= {
         title: titleContent,
         content: editorContent,
+        isDraft: true
     };
 
-    const storedPolicies: Policy[] = JSON.parse(localStorage.getItem('policies') ?? '[]');
-    storedPolicies.push(newPolicy);
-    localStorage.setItem('policies', JSON.stringify(storedPolicies));
+    console.log(newPolicy);
+    createPolicy(newPolicy)
 
     setEditorContent('');
     setTitleContent('');

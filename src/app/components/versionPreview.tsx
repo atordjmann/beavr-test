@@ -2,20 +2,18 @@ import React from 'react';
 import styles from "../styles/policy-document.module.css";
 import layoutStyles from "../styles/layout.module.css";
 import Image from "next/image";
+import { Policy } from '../models/policy';
 
-export default function VersionList() {
-  return (
-    <div className={styles.previewsContainer}>
-        <VersionPreview
-            title="Last version (draft)"
-            isDraft={true}
-        />
-        <VersionPreview
-            title="Version of Dec 2023"
-            isDraft={false}
-        />
-    </div>
-  );
+export default function VersionList({ policies, removePolicy }: {policies: Policy[], removePolicy: any}) {
+    return (
+        <div className={styles.previewsContainer}>
+            {policies
+                .reverse()
+                .map((policy) => {return (
+                    <VersionPreview key={policy.title} title={policy.title} isDraft={policy.isDraft} />
+                )})}
+        </div>
+    );
 };
 
 function VersionPreview(
