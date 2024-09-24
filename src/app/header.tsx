@@ -15,8 +15,8 @@ export default function Header() {
             />
             <h1 className={styles.title}>Code of conduct</h1>
             <div>
-                <button className={styles.button}>Close</button>
-                <button className={styles.button}>Options</button>
+                <button className={styles.secondaryButton}>Close  X</button>
+                <button className={styles.secondaryButton}>...</button>
             </div>
         </header>
     )
