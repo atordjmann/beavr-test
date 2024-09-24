@@ -7,7 +7,7 @@
     padding: 10px 20px;
 }
 
-.image {
+.headerImage {
     width:75px;
     height: 24px
 }
@@ -27,4 +27,59 @@
     padding: 5px;
     height: 28px;
     width: 74px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card {
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px #21213414;
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    border: #E6E6E6 1px solid;
+    margin: 30px 0px;
+}
+
+.infoBox {
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    padding: 20px;
+    flex: 1;
+    margin: 0 10px;
+    border: #E6E6E6 1px solid;
+}
+
+
+.infoBoxTextContainer {
+    flex: 1;
+    margin-left: 10px
+}
+
+.infoBoxTitle {
+    font-size: 18px;
+    margin: 0 0 5px 0;
+    text-align: left;
+}
+
+.infoBoxDescription {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+    text-align: left;
+}
+
+.actionButton {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 2px;
+    cursor: pointer
 }

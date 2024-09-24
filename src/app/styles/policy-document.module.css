@@ -1,0 +1,40 @@
+.textContainer {
+    padding: 25px;
+    border-bottom: #E6E6E6 1px solid;
+}
+
+.boxContainer {
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+  
+.policyDetailCard {
+    display: flex;
+    flex-direction: column;
+}
+  
+.policyDetailsTexts {
+    display: flex
+}
+
+.policyDetailsText {
+    width: 45%;
+    padding: 25px;
+    border: #E6E6E6 1px solid;
+}
+  
+.policyDetailsInput {
+    padding: 25px;
+    border: #E6E6E6 1px solid;
+}

@@ -1,12 +1,13 @@
-import Image from "next/image";
 import Header from "./header";
+import PolicyDocument from "./components/policyDocument";
 
 export default function Home() {
   return (
     
     <div>
       <main>
-        <Header></Header>
+        <Header/>
+        <PolicyDocument/>
       </main>
     </div>
   );

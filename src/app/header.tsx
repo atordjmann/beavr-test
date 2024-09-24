@@ -1,5 +1,5 @@
 import Image from "next/image";
-import beavrLogo from "../public/beavr-logo.svg"
+import beavrLogo from "/public/beavr-logo.svg"
 import "./styles/globals.css";
 import styles from "./styles/layout.module.css";
 
@@ -9,7 +9,7 @@ export default function Header() {
             <Image
             src={beavrLogo}
             alt="BEAVR logo"
-            className={styles.image}
+            className={styles.headerImage}
             width={75}
             height={24}
             />
