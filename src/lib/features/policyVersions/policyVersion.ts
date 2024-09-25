@@ -1,4 +1,5 @@
-export interface Policy {
+export interface PolicyVersion {
+    id: string;
     title: string;
     content: string;
     isDraft: boolean;

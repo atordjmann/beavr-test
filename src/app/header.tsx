@@ -3,8 +3,11 @@ import beavrLogo from "/public/beavr-logo.svg"
 import "./styles/globals.css";
 import styles from "./styles/layout.module.css";
 import { useState } from "react";
+import { useResetPolicyMutation } from "@/lib/features/policyVersions/policyVersionSlice";
 
-export default function Header({resetPolicies}: {resetPolicies: any}) {
+export default function Header() {
+  const [resetPolicy] = useResetPolicyMutation();
+
     const [showOptions, setShowOptions] = useState(false);
 
     const toggleOptions = () => {
@@ -28,7 +31,7 @@ export default function Header({resetPolicies}: {resetPolicies: any}) {
 
                     {showOptions && (
                     <div className={styles.optionsContainer}>
-                        <button className={styles.optionButton} onClick={resetPolicies}>Reset document</button>
+                        <button className={styles.optionButton} onClick={() => resetPolicy('')}>Reset document</button>
                     </div>
                     )}
                 </div>

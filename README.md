@@ -1,6 +1,7 @@
 # BEAVR Front-end test
 
 I chose to code this test with the React framework, more precisely Next.js framework.
+I used Redux for state management, and I mocked my API in the ApiSlice.
 I've tried to keep the code as simple as possible, with as few dependencies as possible. 
 
 As I didn't code an API, this is only a front-end application. So the data is never persisted, and only contained in the states of the components. **If you refresh your page, you will lose your data.**

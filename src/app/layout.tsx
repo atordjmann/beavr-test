@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./styles/globals.css";
+import { StoreProvider } from "./storeProvider";
 
 export const metadata: Metadata = {
   title: "Beavr Policy Management",
@@ -12,11 +13,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <div id="root"></div>
-        {children}
-      </body>
-    </html>
+    <StoreProvider>
+      <html lang="en">
+        <body>
+          <div id="root"></div>
+
+            {children}
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

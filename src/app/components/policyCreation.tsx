@@ -1,18 +1,8 @@
 import PolicyCreationOption from './policyCreationOption';
 import layoutStyles from "../styles/layout.module.css";
 import styles from "../styles/policy-document.module.css";
-import { Policy } from '../models/policy';
 
-interface PolicyCreationProps {
-  addPolicy: (policy: Policy) => void;
-}
-
-export default function PolicyCreation({ addPolicy }: PolicyCreationProps) {
-  
-  const createPolicy = (policy: Policy) => {
-    addPolicy(policy);
-  };
-
+export default function PolicyCreation() {
   return (
     <div className={layoutStyles.card}>
       <div className={styles.textContainer}>
@@ -29,7 +19,6 @@ export default function PolicyCreation({ addPolicy }: PolicyCreationProps) {
           imageSrc="/images/time-icon.svg"
           buttonText="Start"
 		  containsTemplate={false}
-          createPolicy={createPolicy}
         />
         
         <PolicyCreationOption
@@ -38,7 +27,6 @@ export default function PolicyCreation({ addPolicy }: PolicyCreationProps) {
           imageSrc="/images/document-icon.svg"
           buttonText="Start"
 		  containsTemplate={true}
-          createPolicy={createPolicy}
         />
       </div>
     </div>

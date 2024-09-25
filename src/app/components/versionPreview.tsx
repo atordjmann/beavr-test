@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import layoutStyles from "../styles/layout.module.css";
 import Image from "next/image";
 import Modal from 'react-modal';
-import { Policy } from '../models/policy';
+import { PolicyVersion } from '../../lib/features/policyVersions/policyVersion';
+import { useApprovePolicyMutation, useDeletePolicyMutation } from '@/lib/features/policyVersions/policyVersionSlice';
 
 interface VersionPreviewProps {
-  policy: Policy;
-  removePolicy: (policy: Policy) => void;
-  approuvePolicy: (policy: Policy) => void;
+  policy: PolicyVersion;
 }
 
-export default function VersionPreview({ policy, removePolicy, approuvePolicy }: VersionPreviewProps) {
+export default function VersionPreview({ policy }: VersionPreviewProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
+  const [approuvePolicy] = useApprovePolicyMutation();
+  const [removePolicy] = useDeletePolicyMutation();
 
   const openModal = () => setModalIsOpen(true);
   const closeModal = () => setModalIsOpen(false);
@@ -20,7 +21,7 @@ export default function VersionPreview({ policy, removePolicy, approuvePolicy }:
 
   const imageSrc = policy.isDraft ? "/images/draft-version.svg" : "/images/approved-version.svg";
   const actionButton = policy.isDraft
-    ? <button onClick={() => approuvePolicy(policy)} className={layoutStyles.actionButton}>Approve</button>
+    ? <button onClick={() => approuvePolicy(policy.id)} className={layoutStyles.actionButton}>Approve</button>
     : <button onClick={openModal} className={layoutStyles.secondaryButton}>View</button>;
 
   return (
@@ -38,7 +39,7 @@ export default function VersionPreview({ policy, removePolicy, approuvePolicy }:
 
           {showOptions && (
             <div className={layoutStyles.optionsContainer}>
-              <button className={layoutStyles.optionButton} onClick={() => removePolicy(policy)}>Delete version</button>
+              <button className={layoutStyles.optionButton} onClick={() => removePolicy(policy.id)}>Delete version</button>
               <button className={layoutStyles.optionButton} onClick={() => downloadPolicy(policy)}>Download</button>
             </div>
           )}
@@ -55,7 +56,7 @@ export default function VersionPreview({ policy, removePolicy, approuvePolicy }:
   );
 }
 
-const downloadPolicy = (policy: Policy) => {
+const downloadPolicy = (policy: PolicyVersion) => {
   const content = `Policy Title: ${policy.title}\nContent: ${policy.content}`;
   const blob = new Blob([content], { type: 'text/plain' });
   const link = document.createElement('a');

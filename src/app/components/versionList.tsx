@@ -1,24 +1,37 @@
-import { Policy } from "../models/policy";
+import { useGetPolicyVersionsQuery } from "@/lib/features/policyVersions/policyVersionSlice";
 import styles from "../styles/policy-document.module.css";
 import VersionPreview from "./versionPreview";
 
-interface VersionListProps {
-    policies: Policy[];
-    removePolicy: (policy: Policy) => void;
-    approuvePolicy: (policy: Policy) => void;
-  }
   
-  export default function VersionList({ policies, removePolicy, approuvePolicy }: VersionListProps) {
+  export default function VersionList() {
+    const { data, isError, isLoading} =
+    useGetPolicyVersionsQuery(null);
+
+    if (isLoading) {
+        return (
+            <div>
+            <h1>Data is loading ...</h1>
+            </div>
+        );
+    }
+  
+    if (isError || data == null) {
+        return (
+            <div>
+            <h1>There was an error !</h1>
+            </div>
+        );
+    }
+
     return (
       <div className={styles.previewsContainer}>
-        {policies
-          .slice().reverse()
-          .map((policy) => (
+        {data
+        .slice()
+        .sort((a,b) => b.createdAt.getTime() - a.createdAt.getTime())
+        .map((policy) => (
             <VersionPreview
-              key={policy.title}
+              key={policy.id}
               policy={policy}
-              removePolicy={removePolicy}
-              approuvePolicy={approuvePolicy}
             />
           ))}
       </div>

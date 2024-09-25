@@ -2,7 +2,8 @@ import layoutStyles from "../styles/layout.module.css";
 import Image from "next/image";
 import React, { useState, ChangeEvent } from 'react';
 import Modal from 'react-modal';
-import { Policy } from "../models/policy";
+import { useCreatePolicyMutation } from "@/lib/features/policyVersions/policyVersionSlice";
+import { CreatablePolicy } from "../models/creatablePolicy";
 
 // Set app element for accessibility
 Modal.setAppElement('#root');
@@ -13,7 +14,6 @@ interface InfoBoxProps {
   imageSrc: string;
   buttonText: string;
   containsTemplate: boolean;
-  createPolicy: (policy: Policy) => void;
 }
 
 export default function PolicyCreationOption({
@@ -22,12 +22,12 @@ export default function PolicyCreationOption({
   imageSrc,
   buttonText,
   containsTemplate,
-  createPolicy,
 }: InfoBoxProps) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [titleContent, setTitleContent] = useState(containsTemplate ? 'New version (draft)' : '');
   const [editorContent, setEditorContent] = useState(containsTemplate ? 'Date of creation : JJ/MM/YYYY \nThis policy aims at : \nFind more information here:' : '');
   const [errors, setErrors] = useState({ title: '', content: '' });
+  const [createPolicy] = useCreatePolicyMutation();
 
   const openModal = () => setModalIsOpen(true);
 
@@ -48,11 +48,9 @@ export default function PolicyCreationOption({
 
     if (!isValid) return;
 
-    const newPolicy: Policy = {
+    const newPolicy: CreatablePolicy = {
       title: titleContent,
       content: editorContent,
-      isDraft: true,
-      createdAt: new Date(),
     };
 
     createPolicy(newPolicy);
