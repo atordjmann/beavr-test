@@ -8,8 +8,7 @@ export default function PolicyCreation({ addPolicy }: {addPolicy: any}) {
 
 	const createPolicy = (policy: Policy) => {
 		addPolicy(policy);
-		console.log(policy);
-	  };
+	};
 
 
   return (

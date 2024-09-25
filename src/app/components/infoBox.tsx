@@ -9,40 +9,39 @@ Modal.setAppElement('#root');
 export default function InfoBox(
     {title, description, imageSrc, buttonText, createPolicy}: {title: string, description: string, imageSrc: any, buttonText: string, createPolicy: any}) {
     
-const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [titleContent, setTitleContent] = useState('');
-  const [editorContent, setEditorContent] = useState('');
-  const openModal = () => {
-    setModalIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-    const newPolicy : Policy= {
-        title: titleContent,
-        content: editorContent,
-        isDraft: true
+    const [titleContent, setTitleContent] = useState('');
+    const [editorContent, setEditorContent] = useState('');
+    const openModal = () => {
+        setModalIsOpen(true);
     };
 
-    console.log(newPolicy);
-    createPolicy(newPolicy)
+    const closeModal = () => {
+        setModalIsOpen(false);
+        const newPolicy : Policy= {
+            title: titleContent,
+            content: editorContent,
+            isDraft: true
+        };
 
-    setEditorContent('');
-    setTitleContent('');
-  };
+        createPolicy(newPolicy)
 
-  const cancelModal = () => {
-    setModalIsOpen(false);
-  };
+        setEditorContent('');
+        setTitleContent('');
+    };
 
-  const handleTextChange = (e: any) => {
-    setEditorContent(e.target.value);
-  };
+    const cancelModal = () => {
+        setModalIsOpen(false);
+    };
 
-  const handleTitleChange = (e: any) => {
-    setTitleContent(e.target.value);
-  };
+    const handleTextChange = (e: any) => {
+        setEditorContent(e.target.value);
+    };
+
+    const handleTitleChange = (e: any) => {
+        setTitleContent(e.target.value);
+    };
 
     return (
       <div className={layoutStyles.infoBox}>

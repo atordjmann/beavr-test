@@ -5,6 +5,7 @@ import styles from "../styles/policy-document.module.css";
 import "../styles/globals.css";
 
 export default function PolicyDetail() {
+    
   return (
     <div className={layoutStyles.card}>
         <div className={styles.policyDetails}>
@@ -12,7 +13,7 @@ export default function PolicyDetail() {
             <div className={styles.policyDetailsText}>
                 <h1 className={styles.title}>Description</h1>
                 <p className={styles.description}>
-                This is a short description for the main card.
+                This is the description of the policy document.
                 </p>
             </div>
             <div className={styles.policyDetailsText}>

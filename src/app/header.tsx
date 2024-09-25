@@ -2,8 +2,15 @@ import Image from "next/image";
 import beavrLogo from "/public/beavr-logo.svg"
 import "./styles/globals.css";
 import styles from "./styles/layout.module.css";
+import { useState } from "react";
 
-export default function Header() {
+export default function Header({resetPolicies}: {resetPolicies: any}) {
+    const [showOptions, setShowOptions] = useState(false);
+
+    const toggleOptions = () => {
+        setShowOptions(!showOptions);
+    };
+    
     return (
         <header className={styles.header}>
             <Image
@@ -14,9 +21,17 @@ export default function Header() {
             height={24}
             />
             <h1 className={styles.title}>Code of conduct</h1>
-            <div>
+            <div className={styles.buttonContainer}>
                 <button className={styles.secondaryButton}>Close  X</button>
-                <button className={styles.secondaryButton}>...</button>
+                <div className={styles.dropDownContainer}>
+                    <button onClick={toggleOptions} className={styles.secondaryButton}>...</button>
+
+                    {showOptions && (
+                    <div className={styles.optionsContainer}>
+                        <button className={styles.optionButton} onClick={resetPolicies}>Reset document</button>
+                    </div>
+                    )}
+                </div>
             </div>
         </header>
     )
