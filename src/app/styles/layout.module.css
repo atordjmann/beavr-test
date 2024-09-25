@@ -109,16 +109,6 @@
     margin-bottom: 20px;
 };
 
-.textArea {
-    width: 100%;
-    height: 200px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-};
-
-
 .dropDownContainer {
     position: relative;
     display: inline-block;
@@ -144,3 +134,10 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.errorText {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
